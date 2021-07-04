@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="CHatDataBaase" Class="DCDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-LM7MM15\SQLEXPRESS;Initial Catalog=CHatDataBaase;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="CHatDataBaaseConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Message" Member="Message">
+    <Type Name="Message">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ID_emetteur" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ID_recepteur" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Text" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Participant_Message" Member="Participant" ThisKey="ID_emetteur" OtherKey="ID" Type="Participant" IsForeignKey="true" />
+      <Association Name="Participant_Message1" Member="Participant1" ThisKey="ID_recepteur" OtherKey="ID" Type="Participant" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Participant" Member="Participant">
+    <Type Name="Participant">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Pseudo" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Association Name="Participant_Message" Member="Message" ThisKey="ID" OtherKey="ID_emetteur" Type="Message" />
+      <Association Name="Participant_Message1" Member="Message1" ThisKey="ID" OtherKey="ID_recepteur" Type="Message" />
+    </Type>
+  </Table>
+</Database>
